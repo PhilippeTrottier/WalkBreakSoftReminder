@@ -44,6 +44,7 @@ internal sealed class ConfigurationForm : Form
         layout.SetColumnSpan(note, 2);
         var buttons = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.RightToLeft, Dock = DockStyle.Fill };
         var cancel = new Button { Text = "Cancel", DialogResult = DialogResult.Cancel, AutoSize = true };
+        cancel.Click += (_, _) => Close();
         var saveButton = new Button { Text = "Save", AutoSize = true };
         saveButton.Click += (_, _) =>
         {

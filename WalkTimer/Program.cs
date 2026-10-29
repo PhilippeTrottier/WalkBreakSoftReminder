@@ -26,5 +26,5 @@ static class Program
 
         using var context = new TrayApplicationContext(settings);
         Application.Run(context);
-    }    
+    }
 }
