@@ -78,12 +78,24 @@ internal sealed class TrayApplicationContext : ApplicationContext
             return;
         }
 
-        configuration = new ConfigurationForm(settings, newSettings =>
+        bool startsOnLogon;
+        try
+        {
+            startsOnLogon = StartupRegistration.IsEnabled();
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or System.Security.SecurityException)
+        {
+            MessageBox.Show($"Could not read the logon setting.\n\n{ex.Message}", "Walk Timer");
+            return;
+        }
+
+        configuration = new ConfigurationForm(settings, startsOnLogon, (newSettings, startup) =>
         {
             newSettings.Save();
             settings = newSettings;
             reminder.Configure(settings, DateTimeOffset.UtcNow);
             RefreshTray();
+            StartupRegistration.SetEnabled(startup);
         });
         configuration.FormClosed += (_, _) => configuration = null;
         configuration.Show();
