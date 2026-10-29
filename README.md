@@ -3,6 +3,9 @@
 A quiet Windows notification-area reminder to stand up and walk. Built with C#,
 .NET 10 LTS, and Windows Forms. No third-party packages.
 
+Download `WalkBreakSoftReminder.exe` from the [latest release](https://github.com/PhilippeTrottier/WalkBreakSoftReminder/releases/latest).
+It is a self-contained Windows x64 executable; no separate .NET installation is needed.
+
 ## Run
 
 On Windows with the .NET 10 SDK:
@@ -62,18 +65,31 @@ the configuration form without writing settings or changing logon startup:
 dotnet run --project WalkBreakSoftReminder.Checks -- --preview
 ```
 
-For a runnable folder requiring the .NET 10 Desktop Runtime:
+To publish the same single, self-contained Windows x64 executable as CI:
 
 ```powershell
-dotnet publish WalkBreakSoftReminder --configuration Release --output publish
-.\publish\WalkBreakSoftReminder.exe
+dotnet publish WalkBreakSoftReminder --configuration Release --runtime win-x64 `
+  --self-contained true -p:PublishSingleFile=true `
+  -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None `
+  --output publish/single-file
+.\publish\single-file\WalkBreakSoftReminder.exe
 ```
 
-For a Windows x64 folder that includes the runtime:
+The runtime is bundled into the EXE, making it larger. Native components extract
+internally when it runs. Settings still go into Local AppData.
 
-```powershell
-dotnet publish WalkBreakSoftReminder --configuration Release --runtime win-x64 --self-contained true --output publish
-```
+## Automatic releases
+
+Every push to `main` runs `.github/workflows/release.yml` on a standard GitHub-hosted
+Windows runner. It selects .NET 10, builds, runs the checks, publishes, and verifies
+that the output contains exactly one EXE. Only successful runs create a release,
+tagged `build-1`, `build-2`, and so on, pointing to the pushed commit. The EXE is
+attached directly to the release, with generated release notes.
+
+The workflow uses GitHub's own checkout/setup actions and the runner's GitHub CLI.
+Its built-in token has `contents: write` permission to create tags and releases;
+no additional credentials are required. Standard hosted runners are free for
+this public repository.
 
 Exit the app before rebuilding or replacing its executable.
 
