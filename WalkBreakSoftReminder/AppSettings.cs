@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace WalkTimer;
+namespace WalkBreakSoftReminder;
 
 internal sealed record AppSettings(int SeatedMinutes = 30, int WalkMinutes = 5)
 {
@@ -10,7 +10,7 @@ internal sealed record AppSettings(int SeatedMinutes = 30, int WalkMinutes = 5)
         && WalkMinutes is >= 1 and <= MaximumMinutes;
 
     public static string FilePath => Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "WalkTimer", "settings.json");
+        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "WalkBreakSoftReminder", "settings.json");
 
     public static AppSettings Load()
     {

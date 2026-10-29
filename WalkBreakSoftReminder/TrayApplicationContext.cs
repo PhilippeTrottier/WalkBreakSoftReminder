@@ -1,4 +1,4 @@
-namespace WalkTimer;
+namespace WalkBreakSoftReminder;
 
 internal sealed class TrayApplicationContext : ApplicationContext
 {
@@ -34,7 +34,7 @@ internal sealed class TrayApplicationContext : ApplicationContext
         };
         menu.Opening += (_, _) => RefreshTray();
 
-        tray = new NotifyIcon { ContextMenuStrip = menu, Icon = icons.Seated, Text = "Walk Timer", Visible = true };
+        tray = new NotifyIcon { ContextMenuStrip = menu, Icon = icons.Seated, Text = "Walk Break Soft Reminder", Visible = true };
         tray.MouseClick += (_, e) =>
         {
             if (e.Button == MouseButtons.Left)
@@ -58,7 +58,7 @@ internal sealed class TrayApplicationContext : ApplicationContext
             _ => $"Walking · seated in {time}"
         };
         walk.Visible = reminder.State != ReminderState.Walking;
-        tray.Text = reminder.State == ReminderState.Warning ? "Walk Timer: time to stand up and walk" : $"Walk Timer: {countdown.Text}";
+        tray.Text = reminder.State == ReminderState.Warning ? "Walk Break Soft Reminder: time to stand up and walk" : $"Walk Break Soft Reminder: {countdown.Text}";
 
         // A complete pulse takes two seconds; no images are allocated on each tick.
         var frame = (int)(Environment.TickCount64 / ticker.Interval % icons.Warning.Length);
@@ -85,7 +85,7 @@ internal sealed class TrayApplicationContext : ApplicationContext
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or System.Security.SecurityException)
         {
-            MessageBox.Show($"Could not read the logon setting.\n\n{ex.Message}", "Walk Timer");
+            MessageBox.Show($"Could not read the logon setting.\n\n{ex.Message}", "Walk Break Soft Reminder");
             return;
         }
 

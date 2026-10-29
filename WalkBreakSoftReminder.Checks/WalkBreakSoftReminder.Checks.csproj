@@ -7,6 +7,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../WalkTimer/WalkTimer.csproj" />
+    <ProjectReference Include="../WalkBreakSoftReminder/WalkBreakSoftReminder.csproj" />
   </ItemGroup>
 </Project>

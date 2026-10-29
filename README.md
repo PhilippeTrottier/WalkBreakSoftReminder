@@ -1,4 +1,4 @@
-# Walk Timer
+# Walk Break Soft Reminder
 
 A quiet Windows notification-area reminder to stand up and walk. Built with C#,
 .NET 10 LTS, and Windows Forms. No third-party packages.
@@ -8,7 +8,7 @@ A quiet Windows notification-area reminder to stand up and walk. Built with C#,
 On Windows with the .NET 10 SDK:
 
 ```powershell
-dotnet run --project WalkTimer
+dotnet run --project WalkBreakSoftReminder
 ```
 
 The app starts seated with no main window. Look in the notification area (including
@@ -31,12 +31,12 @@ There are no sounds, popups, or automatic idle detection.
 Configure accepts whole-minute durations from 1 to 1440. Save preserves elapsed
 time in the current state; shortening a duration past its elapsed time transitions
 immediately. A warning stays active until Walk or Reset. Cancel discards edits.
-Durations are saved to `%LOCALAPPDATA%\WalkTimer\settings.json`. Each app launch
+Durations are saved to `%LOCALAPPDATA%\WalkBreakSoftReminder\settings.json`. Each app launch
 starts a fresh seated timer. Invalid or unreadable settings produce a message and
 fall back to 30/5 minutes.
 
 Start on user logon defaults to off. Enabling it registers the current executable
-in `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` as `WalkTimer`. No admin
+in `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` as `WalkBreakSoftReminder`. No admin
 rights are needed. Publish to a permanent folder before enabling this; if you move
 the executable, save the toggle again from its new location. Windows Startup Apps
 can separately disable startup entries.
@@ -48,8 +48,8 @@ Changing the system clock also affects deadlines.
 ## Build and check
 
 ```powershell
-dotnet build WalkTimer.slnx --configuration Release
-dotnet run --project WalkTimer.Checks --configuration Release
+dotnet build WalkBreakSoftReminder.slnx --configuration Release
+dotnet run --project WalkBreakSoftReminder.Checks --configuration Release
 ```
 
 The checks are a small console program with no test packages. A failed check throws
@@ -59,20 +59,20 @@ The form checks briefly show a window. To preview
 the configuration form without writing settings or changing logon startup:
 
 ```powershell
-dotnet run --project WalkTimer.Checks -- --preview
+dotnet run --project WalkBreakSoftReminder.Checks -- --preview
 ```
 
 For a runnable folder requiring the .NET 10 Desktop Runtime:
 
 ```powershell
-dotnet publish WalkTimer --configuration Release --output publish
-.\publish\WalkTimer.exe
+dotnet publish WalkBreakSoftReminder --configuration Release --output publish
+.\publish\WalkBreakSoftReminder.exe
 ```
 
 For a Windows x64 folder that includes the runtime:
 
 ```powershell
-dotnet publish WalkTimer --configuration Release --runtime win-x64 --self-contained true --output publish
+dotnet publish WalkBreakSoftReminder --configuration Release --runtime win-x64 --self-contained true --output publish
 ```
 
 Exit the app before rebuilding or replacing its executable.

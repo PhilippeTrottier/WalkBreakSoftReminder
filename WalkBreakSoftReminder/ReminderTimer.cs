@@ -1,4 +1,4 @@
-namespace WalkTimer;
+namespace WalkBreakSoftReminder;
 
 internal enum ReminderState { Seated, Warning, Walking }
 

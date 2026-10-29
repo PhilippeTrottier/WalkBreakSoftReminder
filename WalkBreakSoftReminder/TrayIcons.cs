@@ -1,7 +1,7 @@
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 
-namespace WalkTimer;
+namespace WalkBreakSoftReminder;
 
 // Create the small set of animation frames once, and release all icon handles on exit.
 internal sealed class TrayIcons : IDisposable

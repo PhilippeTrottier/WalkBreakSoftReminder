@@ -1,4 +1,4 @@
-namespace WalkTimer;
+namespace WalkBreakSoftReminder;
 
 internal sealed class ConfigurationForm : Form
 {
@@ -7,7 +7,7 @@ internal sealed class ConfigurationForm : Form
 
     public ConfigurationForm(AppSettings settings, bool startsOnLogon, Action<AppSettings, bool> save)
     {
-        Text = "Configure Walk Timer";
+        Text = "Configure Walk Break Soft Reminder";
         AutoScaleMode = AutoScaleMode.Font;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = false;
@@ -56,7 +56,7 @@ internal sealed class ConfigurationForm : Form
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or System.Security.SecurityException)
             {
-                MessageBox.Show(this, $"Could not save all settings. Some changes may already be saved.\n\n{ex.Message}", "Walk Timer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, $"Could not save all settings. Some changes may already be saved.\n\n{ex.Message}", "Walk Break Soft Reminder", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         };
         buttons.Controls.Add(cancel);

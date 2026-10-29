@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="WalkBreakSoftReminder.Checks/WalkBreakSoftReminder.Checks.csproj" />
+  <Project Path="WalkBreakSoftReminder/WalkBreakSoftReminder.csproj" />
+</Solution>

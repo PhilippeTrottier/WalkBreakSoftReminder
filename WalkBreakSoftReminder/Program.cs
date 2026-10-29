@@ -1,4 +1,4 @@
-namespace WalkTimer;
+namespace WalkBreakSoftReminder;
 
 static class Program
 {
@@ -6,10 +6,10 @@ static class Program
     static void Main()
     {
         ApplicationConfiguration.Initialize();
-        using var instance = new Mutex(true, @"Local\WalkTimer", out var isFirstInstance);
+        using var instance = new Mutex(true, @"Local\WalkBreakSoftReminder", out var isFirstInstance);
         if (!isFirstInstance)
         {
-            MessageBox.Show("Walk Timer is already running. Look for its icon in the notification area.", "Walk Timer");
+            MessageBox.Show("Walk Break Soft Reminder is already running. Look for its icon in the notification area.", "Walk Break Soft Reminder");
             return;
         }
 
@@ -20,7 +20,7 @@ static class Program
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or System.Text.Json.JsonException)
         {
-            MessageBox.Show($"Could not load settings. Using the defaults.\n\n{ex.Message}", "Walk Timer");
+            MessageBox.Show($"Could not load settings. Using the defaults.\n\n{ex.Message}", "Walk Break Soft Reminder");
             settings = new();
         }
 

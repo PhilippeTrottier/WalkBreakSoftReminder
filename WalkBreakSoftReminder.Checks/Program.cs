@@ -1,4 +1,4 @@
-using WalkTimer;
+using WalkBreakSoftReminder;
 
 internal static class Program
 {

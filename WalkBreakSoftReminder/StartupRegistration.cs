@@ -1,11 +1,11 @@
 using Microsoft.Win32;
 
-namespace WalkTimer;
+namespace WalkBreakSoftReminder;
 
 internal static class StartupRegistration
 {
     private const string KeyPath = @"Software\Microsoft\Windows\CurrentVersion\Run";
-    private const string ValueName = "WalkTimer";
+    private const string ValueName = "WalkBreakSoftReminder";
     private static string Command => $"\"{Environment.ProcessPath!}\"";
 
     public static bool IsEnabled()

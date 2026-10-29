@@ -1,15 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>
+    <Product>Walk Break Soft Reminder</Product>
+    <AssemblyTitle>Walk Break Soft Reminder</AssemblyTitle>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="WalkTimer.Checks" />
+    <InternalsVisibleTo Include="WalkBreakSoftReminder.Checks" />
   </ItemGroup>
 
 </Project>
